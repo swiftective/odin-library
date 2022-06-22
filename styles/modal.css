@@ -1,0 +1,76 @@
+dialog::backdrop {
+  background-color: black;
+  opacity: 70%;
+}
+
+dialog {
+  position: relative;
+  animation: popup 0.2s cubic-bezier(0.1, 1.77, 0, 1);
+  background-color: var(--primary-bg);
+  border: none;
+  border-radius: 20px;
+  min-height: clamp(600px, 600px, 30vw);
+  min-height: clamp(300px, 300px, 30vw);
+}
+
+#close-dialog-btn {
+  position: absolute;
+  padding: 1px;
+  border: 60% solid #000;
+  right: 15px;
+  top: 6px;
+  color: var(--primary-fg);
+}
+
+#close-dialog-btn:hover {
+  cursor: pointer;
+}
+
+#close-dialog-btn::before {
+  content: "\00d7";
+  font-size: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+form > * {
+  flex: 1;
+  margin: 1rem;
+}
+
+input {
+  border-radius: 100vmax;
+  background-color: var(--secondary-bg);
+  border: none;
+  padding: 1ch;
+  padding-left: 2ch;
+}
+
+input::placeholder {
+  color: var(--primary-fg);
+  opacity: 35%;
+  font-weight: bold;
+}
+
+label {
+  color: var(--primary-fg);
+  font-size: 0.8rem;
+}
+
+input[type="submit"] {
+  color: var(--primary-fg);
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

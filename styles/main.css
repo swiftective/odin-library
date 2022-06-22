@@ -1,0 +1,89 @@
+@import "modal.css";
+@import "book.css";
+
+.colorscheme {
+  --primary-bg: #f8fafc;
+  --secondary-bg: #cbd5e1;
+  --primary-fg: #121212;
+  --primary-book-bg: #f8fafc;
+  --primary-book-fg: #3d4f5f;
+  --primary-read-bg: rgba(35, 166, 213, 0.9903827742034313);
+  --secondary-read-bg: rgba(35, 199, 183, 1);
+  --add-btn-bg: hsl(152, 100%, 71%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .colorscheme {
+    --primary-bg: #161819;
+    --secondary-bg: #2b2f31;
+    --primary-fg: #edebe8;
+    --primary-book-bg: #1f2021;
+    --primary-book-fg: #edebe8;
+    --primary-read-bg: rgba(15, 65, 82, 0.99);
+    --secondary-read-bg: rgb(24, 131, 120);
+    --add-btn-bg: rgb(0, 141, 89);
+    color-scheme: dark;
+  }
+}
+
+* {
+  transition-property: background, color;
+  transition-duration: 700ms;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  background-color: var(--primary-bg);
+  padding: 0 1rem;
+}
+
+h1 {
+  flex: 2;
+  color: var(--primary-fg);
+  font-family: Helvetica;
+}
+
+@media (min-width: 500px) {
+  h1 {
+    text-align: center;
+  }
+}
+
+#add-btn {
+  font-size: clamp(1rem, 2rem, 2rem);
+  border-radius: 50%;
+  width: clamp(2rem, 3rem, 3rem);
+  height: clamp(2rem, 3rem, 3rem);
+  line-height: clamp(2rem, 3rem, 3rem);
+  text-align: center;
+  border: none;
+  background-color: var(--add-btn-bg);
+}
+
+#content-container {
+  display: grid;
+  background-color: var(--secondary-bg);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+  flex: 1;
+}
+
+footer {
+  height: 100px;
+  background-color: var(--primary-bg);
+}

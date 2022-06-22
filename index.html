@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="colorscheme">
+  <head>
+    <title>Library</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <script src="scripts/main.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Library</h1>
+      <button id="add-btn">+</button>
+    </header>
+    <div id="content-container"></div>
+    <dialog id="book-modal">
+      <div id="close-dialog-btn"></div>
+      <form method="dialog" id="form-book">
+        <div>
+          <input
+            required
+            data-book
+            type="text"
+            name="book"
+            id="book-name"
+            placeholder="Book Name"
+          />
+        </div>
+        <div>
+          <input
+            required
+            data-book
+            type="text"
+            name="author"
+            id="author-name"
+            placeholder="Author Name"
+          />
+        </div>
+        <div>
+          <input
+            required
+            data-book
+            type="number"
+            name="pages"
+            id="page-num"
+            placeholder="No. of Pages"
+          />
+        </div>
+        <div id="checkbox-container">
+          <label for="checkbox">Have you read it?</label>
+          <input data-book type="checkbox" name="read" id="checkbox" />
+        </div>
+        <input type="submit" value="Add Book" />
+      </form>
+    </dialog>
+    <footer></footer>
+  </body>
+</html>
