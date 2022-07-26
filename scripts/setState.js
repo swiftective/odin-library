@@ -1,28 +1,26 @@
-export function setState(callback, arr) {
-  callback();
+export function setState(arr) {
   updateLocalStorage(arr);
-  renderUI(JSON.parse(localStorage.getItem("library")));
+  renderUI(arr);
 }
 
-const contentContainer = document.querySelector("#content-container");
-
 function renderUI(arr) {
-  removeAllCards();
+  const contentContainer = document.querySelector("#content-container");
+  removeAllCards(contentContainer);
 
   if (arr === []) return;
 
   arr.forEach((obj, index) => {
-    addCard(createCard(obj, index));
+    addCard(createCard(obj, index), contentContainer);
   });
   addListeners(arr);
 }
 
-function removeAllCards() {
-  contentContainer.innerHTML = "";
+function removeAllCards(container) {
+  container.innerHTML = "";
 }
 
-function addCard(element) {
-  contentContainer.appendChild(element);
+function addCard(element, container) {
+  container.appendChild(element);
 }
 
 function createCard(obj, index) {
@@ -75,21 +73,23 @@ function addListeners(arr) {
     removeBtn.addEventListener("click", (e) => {
       let bookID = parseInt(e.target.parentNode.getAttribute("data-id"));
       arr.splice(bookID, 1);
-      e.target.parentNode.remove();
-      setState(() => {}, arr);
+      setState(arr);
     });
   });
 
   const checkboxes = document.querySelectorAll(
     "input[type=checkbox]:not(#checkbox)"
   );
+
   checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", function () {
-      const bookCard = this.parentNode.parentNode;
-      const id = parseInt(bookCard.getAttribute("data-id"));
-      bookCard.classList.toggle("read");
-      arr[id].read = this.checked;
-      localStorage.setItem("library", JSON.stringify(arr));
-    });
+    checkbox.addEventListener("change", toggleCheckbox);
   });
+
+  function toggleCheckbox({ target }) {
+    const bookCard = target.closest(".book");
+    const id = parseInt(bookCard.getAttribute("data-id"));
+    bookCard.classList.toggle("read");
+    arr[id].read = target.checked;
+    localStorage.setItem("library", JSON.stringify(arr));
+  }
 }
